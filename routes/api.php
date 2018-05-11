@@ -58,6 +58,8 @@ Route::group([
 
     Route::post('/quotes/create', 'QuoteController@save');
 
+    Route::get('/quotes/{quote}/pdf', 'QuoteController@download');
+
     Route::get('/parts', 'PartController@list');
 
     Route::post('/parts/create', 'PartController@create');

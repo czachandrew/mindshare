@@ -4798,12 +4798,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       },
       downloadQuote: function downloadQuote() {
          console.log("download function");
-         __WEBPACK_IMPORTED_MODULE_3_html2canvas___default()(document.getElementById('printQuote'), { width: 750, height: 1050 }).then(function (canvas) {
-            console.log("Doing Something!");
-            var data = canvas.toDataURL('image/png');
-            var doc = new __WEBPACK_IMPORTED_MODULE_2_jsPDF___default.a('p', 'mm', 'a4');
-            doc.addImage(canvas, 'PNG', 10, 10);
-            doc.save('sample.pdf');
+         axios.get('/api/quotes/' + this.quote.id + '/pdf').then(function (response) {
+            console.log(response);
+         }).catch(function (error) {
+            console.log(error);
          });
       },
       setBillingAddress: function setBillingAddress(address) {
@@ -75687,10 +75685,13 @@ var render = function() {
                   [_vm._v("Save")]
                 )
               : _c(
-                  "button",
+                  "a",
                   {
                     staticClass: "btn btn-success btn-lg float-right",
-                    on: { click: _vm.downloadQuote }
+                    attrs: {
+                      href: "/quotes/" + _vm.quote.id + "/pdf",
+                      target: "blank"
+                    }
                   },
                   [_vm._v("Download PDF")]
                 ),

@@ -30,7 +30,7 @@ Route::get('/home', 'HomeController@show');
 
 Route::get('/customer', 'CustomerController@show');
 
-Route::get('/quotedownload', 'QuoteController@download');
+Route::get('/quotes/{quote}/pdf', 'QuoteController@download');
 
 Route::get('/company', 'CompanyController@show');
 

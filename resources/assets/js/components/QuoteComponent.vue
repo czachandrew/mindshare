@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <div class="">
               <button class="btn btn-primary btn-lg float-right" v-if="!isSaved" @click="createQuote">Save</button>
-              <button v-else class="btn btn-success btn-lg float-right" @click="downloadQuote">Download PDF</button>
+              <a v-else class="btn btn-success btn-lg float-right" :href="'/quotes/' + quote.id +'/pdf'" target="blank">Download PDF</a>
                 
                 <h2> <i class="fa fa-search-plus icon"></i> Quote <span v-if="company.name">for {{company.name}}</span></h2>
                 
@@ -351,12 +351,10 @@ export default {
     },
     downloadQuote: function(){
       console.log("download function");
-      html2canvas(document.getElementById('printQuote'), {width: 750, height:1050}).then(function(canvas) {
-        console.log("Doing Something!");
-        let data = canvas.toDataURL('image/png');
-        let doc  = new jsPDF('p', 'mm', 'a4');
-        doc.addImage(canvas, 'PNG', 10, 10);
-        doc.save('sample.pdf');
+      axios.get('/api/quotes/' + this.quote.id + '/pdf').then(response => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
       })
       
     },

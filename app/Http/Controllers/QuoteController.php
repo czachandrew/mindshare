@@ -21,8 +21,8 @@ class QuoteController extends Controller
     	return view('quote', ['company' => $quote->company, 'quote' => $quote, 'start' => 'edit']);
     }
 
-    public function download(){
-    	$quote = Quote::with('lineitems', 'shippingAddress','billingAddress', 'company','owner')->find(17);
+    public function download(Quote $quote){
+    	$quote->load('lineitems', 'shippingAddress','billingAddress', 'company','owner')->find(17);
     	Log::info($quote);
     	//return view('printquote', ['quote' => $quote]);
     	$pdf = PDF::loadView('printquote', ['quote' => $quote]);
