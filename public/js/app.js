@@ -4321,6 +4321,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          fileName: '',
          attachment: {},
          isLoading: false,
+         formData: {},
          contactFileLoading: false,
          assignLoading: false,
          assignUser: '',
@@ -4333,8 +4334,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
    },
 
    methods: {
-      addFile: function addFile() {
-         this.attachment = this.$refs.file.files[0];
+      addCompanyFile: function addCompanyFile() {
+         this.attachment = this.$refs.companyfile.files[0];
+         console.log(this.attachment);
+      },
+      addContactsFile: function addContactsFile() {
+         this.attachment = this.$refs.contactsfile.files[0];
+         console.log(this.attachment);
+      },
+      addAssignFile: function addAssignFile() {
+         this.attachment = this.$refs.assignfile.files[0];
+         console.log(this.attachment);
       },
       submitAssignFile: function submitAssignFile() {
          if (this.assignColumn === '') {
@@ -4362,6 +4372,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          this.formData = new FormData();
          this.formData.append('name', this.fileName);
          this.formData.append('file', this.attachment);
+         console.log(this.formData);
          this.isLoading = true;
          var self = this;
 
@@ -75793,10 +75804,10 @@ var render = function() {
       _c("label", [_vm._v("Upload Companies File")]),
       _vm._v(" "),
       _c("input", {
-        ref: "file",
+        ref: "companyfile",
         staticClass: "file-input form-control",
         attrs: { type: "file", name: "file" },
-        on: { change: _vm.addFile }
+        on: { change: _vm.addCompanyFile }
       })
     ]),
     _vm._v(" "),
@@ -75814,10 +75825,10 @@ var render = function() {
       _c("label", [_vm._v("Upload Contacts File")]),
       _vm._v(" "),
       _c("input", {
-        ref: "file",
+        ref: "contactsfile",
         staticClass: "file-input form-control",
         attrs: { type: "file", name: "file" },
-        on: { change: _vm.addFile }
+        on: { change: _vm.addContactsFile }
       })
     ]),
     _vm._v(" "),
@@ -75881,10 +75892,10 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("input", {
-        ref: "file",
+        ref: "assignfile",
         staticClass: "file-input form-control",
         attrs: { type: "file", name: "file" },
-        on: { change: _vm.addFile }
+        on: { change: _vm.addAssignFile }
       })
     ]),
     _vm._v(" "),

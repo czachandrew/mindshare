@@ -2,7 +2,7 @@
    <div>
    <div class="form-group">
       <label>Upload Companies File</label>
-      <input type="file" ref="file" name="file" class="file-input form-control" @change="addFile" />
+      <input type="file" ref="companyfile" name="file" class="file-input form-control" @change="addCompanyFile" />
    </div>
    <div class="form-group">
       <button class="btn btn-primary" @click="submitForm">Upload</button>
@@ -10,7 +10,7 @@
    </div>
    <div class="form-group">
       <label>Upload Contacts File</label>
-      <input type="file" ref="file" name="file" class="file-input form-control" @change="addFile" />
+      <input type="file" ref="contactsfile" name="file" class="file-input form-control" @change="addContactsFile" />
    </div>
    <div class="form-group">
       <button class="btn btn-primary" @click="submitContactFile">Upload</button>
@@ -27,7 +27,7 @@
    </div> 
    <div class="form-group">
       <label>Upload a list of customer numbers you want to assign</label>
-      <input type="file" ref="file" name="file" class="file-input form-control" @change="addFile" />
+      <input type="file" ref="assignfile" name="file" class="file-input form-control" @change="addAssignFile" />
    </div>
    <div class="form-group">
       <button class="btn btn-primary" @click="submitAssignFile">Assign</button>
@@ -43,6 +43,7 @@ export default {
          fileName:'',
          attachment:{},
          isLoading: false,
+         formData:{},
          contactFileLoading: false,
          assignLoading: false,
          assignUser:'',
@@ -54,8 +55,17 @@ export default {
       }
    },
    methods: {
-      addFile:function(){
-         this.attachment = this.$refs.file.files[0];
+      addCompanyFile:function(){
+         this.attachment = this.$refs.companyfile.files[0];
+         console.log(this.attachment);
+      },
+      addContactsFile: function(){
+         this.attachment = this.$refs.contactsfile.files[0];
+         console.log(this.attachment);
+      },
+      addAssignFile: function(){
+         this.attachment = this.$refs.assignfile.files[0];
+         console.log(this.attachment);
       },
       submitAssignFile: function(){
          if(this.assignColumn === ''){
@@ -83,6 +93,7 @@ export default {
          this.formData = new FormData();
          this.formData.append('name', this.fileName);
          this.formData.append('file', this.attachment);
+         console.log(this.formData);
          this.isLoading = true; 
          let self = this
 
