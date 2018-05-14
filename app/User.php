@@ -62,4 +62,8 @@ class User extends SparkUser
     public function openTasks(){
         return $this->hasMany('App\Task','owner_id')->open();
     }
+
+    public function companies(){
+        return $this->hasMany('App\Company');
+    }
 }

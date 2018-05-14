@@ -50,6 +50,8 @@ Route::group([
 
     Route::post('/companies/{company}/address/new', 'CompanyController@addAddress');
 
+    Route::post('/companies/paginated', 'CompanyController@list');
+
     Route::post('/address/create', 'CompanyController@createAddress');
 
     Route::get('/address/lookup/{term}', 'CompanyController@addressLookup');

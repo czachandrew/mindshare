@@ -17,7 +17,7 @@
                            <p>
                                <i class="fa fa-envelope"></i> email@example.com
                                <br />
-                               <i class="fa fa-globe"></i> <a :href="company.website">{{company.website}}</a>
+                               <i class="fa fa-globe"></i> <a target="_blank" :href="company.website">{{company.website}}</a>
                                <br />
                                Updated {{friendlyUpdateDate}}</p>
                            <!-- Split button -->

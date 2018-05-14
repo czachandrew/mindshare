@@ -49,6 +49,10 @@ import ActivityList from './ActivityList.vue';
 
 import CompanyList from './CompanyList.vue';
 
+import ImportComponent from './ImportComponent.vue';
+
+Vue.component('import-component', ImportComponent);
+
 Vue.component('company-list',CompanyList);
 
 Vue.component('activity-list', ActivityList);

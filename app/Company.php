@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-	protected $fillable = ['name', 'website', 'shipping_address_1','shipping_address_2','shipping_city', 'shipping_state','shipping_zip','shipping_country','billing_address_1','billing_address_2','billing_city','billing_state','billing_zip','billing_country'];
+	protected $fillable = ['name', 'website', 'shipping_address_1','shipping_address_2','shipping_city', 'shipping_state','shipping_zip','shipping_country','billing_address_1','billing_address_2','billing_city','billing_state','billing_zip','billing_country', 'historic_value', 'primary_shipping_id','primary_billing_id','cdw_id'];
 
 	protected $with = ['latestaction','followups','primaryShipping','primaryBilling'];
 
@@ -34,6 +34,10 @@ class Company extends Model
 		return $this->morphMany('App\Note','noteable');
 	}
 
+	public function user(){
+		return $this->belongsTo('App\User');
+	}
+
 	public function activities(){
 		return $this->morphMany('App\Activity', 'activitable');
 	}
@@ -52,5 +56,9 @@ class Company extends Model
 
 	public function scopeWithNotes($query){
 		return $query->with('notes');
+	}
+
+	public function reps(){
+		return $this->belongsToMany('App\Company', 'company_rep','rep_id','company_id');
 	}
 }

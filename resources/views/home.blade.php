@@ -21,7 +21,7 @@
                     <div class="card-body">
                         
                         <task-list :load-tasks="{{$tasks}}" task-scope="Global"></task-list>
-                       <company-list :companies="{{$companies}}"></company-list>
+                       <company-list :default-companies="{{$companies}}"></company-list>
 
                     </div>
                 </div>

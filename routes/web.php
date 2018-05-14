@@ -34,6 +34,14 @@ Route::get('/quotes/{quote}/pdf', 'QuoteController@download');
 
 Route::get('/company', 'CompanyController@show');
 
+Route::get('/companies/import', 'CompanyController@showImportForm');
+
+Route::post('/companies/import', 'CompanyController@importCompanies');
+
+Route::post('/companies/assign', 'CompanyController@assign');
+
+Route::post('/contacts/import', 'ContactController@importContacts');
+
 Route::get('/company/new', 'CompanyController@new');
 
 Route::get('/contact', 'ContactController@show');
