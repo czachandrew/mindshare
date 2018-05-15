@@ -308,7 +308,7 @@ class CompanyController extends Controller
              Log::info('Chunk ' . $i . ' is done');
                 $i++;
                 //return $keeper;
-        }, false); 
+        }, true); 
 
          /** $obj = Excel::load($path, function($reader){
             $reader->takeRows(2);
