@@ -75806,7 +75806,7 @@ var render = function() {
       _c("input", {
         ref: "companyfile",
         staticClass: "file-input form-control",
-        attrs: { type: "file", name: "file" },
+        attrs: { type: "file", name: "companyfile" },
         on: { change: _vm.addCompanyFile }
       })
     ]),
@@ -75827,7 +75827,7 @@ var render = function() {
       _c("input", {
         ref: "contactsfile",
         staticClass: "file-input form-control",
-        attrs: { type: "file", name: "file" },
+        attrs: { type: "file", name: "contactsfile" },
         on: { change: _vm.addContactsFile }
       })
     ]),
@@ -75894,7 +75894,7 @@ var render = function() {
       _c("input", {
         ref: "assignfile",
         staticClass: "file-input form-control",
-        attrs: { type: "file", name: "file" },
+        attrs: { type: "file", name: "assignfile" },
         on: { change: _vm.addAssignFile }
       })
     ]),

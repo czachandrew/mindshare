@@ -2,7 +2,7 @@
    <div>
    <div class="form-group">
       <label>Upload Companies File</label>
-      <input type="file" ref="companyfile" name="file" class="file-input form-control" @change="addCompanyFile" />
+      <input type="file" ref="companyfile" name="companyfile" class="file-input form-control" @change="addCompanyFile" />
    </div>
    <div class="form-group">
       <button class="btn btn-primary" @click="submitForm">Upload</button>
@@ -10,7 +10,7 @@
    </div>
    <div class="form-group">
       <label>Upload Contacts File</label>
-      <input type="file" ref="contactsfile" name="file" class="file-input form-control" @change="addContactsFile" />
+      <input type="file" ref="contactsfile" name="contactsfile" class="file-input form-control" @change="addContactsFile" />
    </div>
    <div class="form-group">
       <button class="btn btn-primary" @click="submitContactFile">Upload</button>
@@ -27,7 +27,7 @@
    </div> 
    <div class="form-group">
       <label>Upload a list of customer numbers you want to assign</label>
-      <input type="file" ref="assignfile" name="file" class="file-input form-control" @change="addAssignFile" />
+      <input type="file" ref="assignfile" name="assignfile" class="file-input form-control" @change="addAssignFile" />
    </div>
    <div class="form-group">
       <button class="btn btn-primary" @click="submitAssignFile">Assign</button>
