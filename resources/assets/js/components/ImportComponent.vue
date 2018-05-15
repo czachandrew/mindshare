@@ -101,7 +101,7 @@ export default {
                console.log(response);
                self.isLoading = false;
          }).catch(error => {
-            console.log(error);
+            console.log(error.response);
             self.isLoading = false;
          })
       },
