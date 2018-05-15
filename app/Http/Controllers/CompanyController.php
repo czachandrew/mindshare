@@ -209,7 +209,7 @@ class CompanyController extends Controller
                     //create the object
                     $company = [
                         'name' => $row->cust_company_name_1,
-                        'website' => substr($row->cust_www_address, 0, 255),
+                        'website' => substr($row->cust_www_address, 0, 180),
                         'shipping_address_1' => $row->cust_address_1,
                         'shipping_address_2' => $row->cust_address_2,
                         'shipping_city' => $row->cust_city_1,
@@ -308,7 +308,7 @@ class CompanyController extends Controller
              Log::info('Chunk ' . $i . ' is done');
                 $i++;
                 //return $keeper;
-        }, true); 
+        }, false); 
 
          /** $obj = Excel::load($path, function($reader){
             $reader->takeRows(2);
