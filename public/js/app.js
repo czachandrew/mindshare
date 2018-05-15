@@ -4370,6 +4370,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       },
       submitForm: function submitForm() {
          this.formData = new FormData();
+         console.log(this.attachment);
          this.formData.append('name', this.fileName);
          this.formData.append('file', this.attachment);
          console.log(this.formData);
@@ -4380,7 +4381,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(response);
             self.isLoading = false;
          }).catch(function (error) {
-            console.log(error);
+            console.log(error.response);
             self.isLoading = false;
          });
       },

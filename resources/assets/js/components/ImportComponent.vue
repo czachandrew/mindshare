@@ -91,6 +91,7 @@ export default {
       }, 
       submitForm:function(){
          this.formData = new FormData();
+         console.log(this.attachment);
          this.formData.append('name', this.fileName);
          this.formData.append('file', this.attachment);
          console.log(this.formData);
