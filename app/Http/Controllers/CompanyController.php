@@ -187,7 +187,7 @@ class CompanyController extends Controller
         
         ini_set('max_execution_time', '180');
         $file = $request->file('file');
-        return $request->all();
+        //return $request->all();
         $name = 'TestName';
         $ext = $file->getClientOriginalExtension();
         //$type = $this->getType($ext);
