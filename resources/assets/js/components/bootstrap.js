@@ -51,6 +51,10 @@ import CompanyList from './CompanyList.vue';
 
 import ImportComponent from './ImportComponent.vue';
 
+import PartsComponent from './PartsComponent.vue';
+
+Vue.component('parts-component', PartsComponent);
+
 Vue.component('import-component', ImportComponent);
 
 Vue.component('company-list',CompanyList);

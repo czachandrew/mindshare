@@ -68,11 +68,17 @@ Route::group([
 
     Route::get('/quotes/{quote}/pdf', 'QuoteController@download');
 
-    Route::get('/parts', 'PartController@list');
+    Route::post('/parts', 'PartController@list');
+
+    Route::post('/parts/update/{part}', 'PartController@update');
+
+    Route::post('/parts/delete/{part}', 'PartController@delete');
 
     Route::post('/parts/create', 'PartController@create');
 
     Route::get('/parts/lookup/{term}', 'PartController@lookup');
+
+    Route::post('/parts/import', 'PartController@import');
 
     Route::post('/notes/create', 'NoteController@create');
 

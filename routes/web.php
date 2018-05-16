@@ -58,4 +58,6 @@ Route::get('/quote/for/{company}', 'QuoteController@create');
 
 Route::get('/part', 'PartController@show');
 
+Route::get('/parts/admin', 'PartController@partsAdmin');
+
 Route::get('/activity', 'ActivityController@show');
