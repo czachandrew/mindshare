@@ -42,6 +42,10 @@ Route::group([
 
     Route::get('/companies/lookup/{term}', 'CompanyController@lookup');
 
+    Route::get('/companies/claim/{company}', 'CompanyController@claim');
+
+    Route::get('/companies/drop/{company}', 'CompanyController@drop');
+
     Route::post('/companies/create', 'CompanyController@create');
 
     Route::get('/contacts', 'ContactController@list');
@@ -49,6 +53,8 @@ Route::group([
     Route::post('/contacts/create', 'ContactController@create');
 
     Route::post('/companies/{company}/address/new', 'CompanyController@addAddress');
+
+    Route::post('/contacts/update/{contact}', 'ContactController@update');
 
     Route::post('/companies/paginated', 'CompanyController@list');
 

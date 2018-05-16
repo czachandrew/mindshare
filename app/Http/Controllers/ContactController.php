@@ -8,6 +8,7 @@ use App\Company;
 use Storage; 
 use Excel; 
 use Log;
+use Auth;
 
 class ContactController extends Controller
 {
@@ -22,6 +23,18 @@ class ContactController extends Controller
     public function create(Request $request){
     	$contact = Contact::create($request->all());
     	return $contact;
+    }
+
+    public function claim(Company $company){
+    	$user = Auth::user();
+    	$company->user_id = $user->id;
+    	$company->save();
+    	return;
+    }
+
+    public function update(Contact $contact, Request $request){
+        $contact->update($request->all());
+        return $contact;
     }
 
     public function importContacts(Request $request){

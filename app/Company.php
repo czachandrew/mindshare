@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-	protected $fillable = ['name', 'website', 'shipping_address_1','shipping_address_2','shipping_city', 'shipping_state','shipping_zip','shipping_country','billing_address_1','billing_address_2','billing_city','billing_state','billing_zip','billing_country', 'historic_value', 'primary_shipping_id','primary_billing_id','cdw_id'];
+	protected $fillable = ['name', 'website', 'shipping_address_1','shipping_address_2','shipping_city', 'shipping_state','shipping_zip','shipping_country','billing_address_1','billing_address_2','billing_city','billing_state','billing_zip','billing_country', 'historic_value', 'primary_shipping_id','primary_billing_id','cdw_id', 'user_id'];
 
-	protected $with = ['latestaction','followups','primaryShipping','primaryBilling'];
+	protected $with = ['latestaction','followups','primaryShipping','primaryBilling', 'user'];
 
 	public function contacts(){
 		return $this->hasMany('App\Contact');

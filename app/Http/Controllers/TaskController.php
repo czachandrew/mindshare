@@ -36,6 +36,7 @@ class TaskController extends Controller
             $company->tasks()->save($task);
         }
         
+        
     	$id = $task->id;
     	$task = Task::find($id);
     	return ['data' => $task];

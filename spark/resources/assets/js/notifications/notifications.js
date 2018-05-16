@@ -76,5 +76,6 @@ module.exports = {
         hasAnnouncements() {
             return this.notifications && this.notifications.announcements.length > 0;
         }
-    }
+    },
+    
 };

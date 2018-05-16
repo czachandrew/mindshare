@@ -23,6 +23,20 @@ class CompanyController extends Controller
     	return view('company')->with('company', $company->load(['notes', 'contacts','activities.tasks', 'tasks']));
     }
 
+    public function claim(Company $company){
+        $user = Auth::user();
+        $company->user_id = $user->id;
+        $company->save();
+        return $company->load('contacts','tasks');
+    }
+
+    public function drop(Company $company){
+        $user = Auth::user();
+        $company->user_id = NULL; 
+        $company->save();
+        return $company->load('contacts','tasks');
+    }
+
     public function createAddress(Request $request){
     	//check and see if something with a similar address_1 exists
     	$address = Address::where('address_1', $request->address_1)->first(); 

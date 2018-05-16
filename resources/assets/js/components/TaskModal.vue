@@ -56,7 +56,7 @@ export default{
          task:{
             title:'',
             description:'',
-            due_date: new Date().toDateString(),
+            due_date: moment().format('YYYY-MM-DD'),
             type:'Task',
             taskable_type:'none',
             taskable_id:'',

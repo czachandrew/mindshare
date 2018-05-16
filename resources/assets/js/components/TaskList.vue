@@ -138,7 +138,7 @@ import { tabset, tab, tabs } from 'vue-strap'
             let self = this;
             if(this.tasks.length > 0){
                //do nothing
-            } else {
+            } else if(tasks) {
             tasks.forEach(function(ele){
                //console.log(ele);
                if(ele.status == 'completed'){
