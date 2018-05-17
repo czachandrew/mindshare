@@ -3810,6 +3810,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -67834,29 +67852,66 @@ var render = function() {
         "div",
         { staticClass: "row" },
         [
-          _c(
-            "div",
-            { staticClass: "col-md-12" },
-            [
-              _c("contacts-table", {
-                attrs: {
-                  contacts: _vm.company.contacts,
-                  company: _vm.company,
-                  "company-id": _vm.company.id
-                },
-                on: {
-                  "update:contacts": function($event) {
-                    _vm.$set(_vm.company, "contacts", $event)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("quotes-list", {
-                attrs: { "load-quotes": _vm.company.quotes }
-              })
-            ],
-            1
-          ),
+          _c("div", { staticClass: "col-md-12 card card-body" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "tab-content",
+                staticStyle: { "min-height": "350px" },
+                attrs: { id: "stuffTabContent" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "tab-pane fade active show",
+                    attrs: {
+                      id: "nav-contacts",
+                      role: "tabpanel",
+                      "aria-expanded": "true",
+                      "aria-labelledby": "contacts-tab"
+                    }
+                  },
+                  [
+                    _c("contacts-table", {
+                      attrs: {
+                        contacts: _vm.company.contacts,
+                        company: _vm.company,
+                        "company-id": _vm.company.id
+                      },
+                      on: {
+                        "update:contacts": function($event) {
+                          _vm.$set(_vm.company, "contacts", $event)
+                        }
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "tab-pane",
+                    attrs: {
+                      id: "nav-quotes",
+                      role: "tabpanel",
+                      "aria-expanded": "false",
+                      "arira-labelledby": "quotes-tab"
+                    }
+                  },
+                  [
+                    _c("quotes-list", {
+                      attrs: { "load-quotes": _vm.company.quotes }
+                    })
+                  ],
+                  1
+                )
+              ]
+            )
+          ]),
           _vm._v(" "),
           _c(
             "div",
@@ -67942,6 +67997,57 @@ var staticRenderFns = [
         attrs: { type: "button", "data-toggle": "dropdown" }
       },
       [_c("span", { staticClass: "sr-only" }, [_vm._v("Toggle Dropdown")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      {
+        staticClass: "nav nav-tabs",
+        attrs: { id: "stuffTab", role: "tablist" }
+      },
+      [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              staticStyle: { "padding-right": "5px", "padding-left": "5px" },
+              attrs: {
+                id: "nav-contacts-tab",
+                "data-toggle": "tab",
+                href: "#nav-contacts",
+                role: "tab",
+                "aria-controls": "contacts",
+                "aria-selected": "true"
+              }
+            },
+            [_vm._v("Contacts")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              staticStyle: { "padding-right": "5px", "padding-left": "5px" },
+              attrs: {
+                id: "nav-quotes-tab",
+                "data-toggle": "tab",
+                href: "#nav-quotes",
+                role: "tab",
+                "aria-controls": "quotes",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("Quotes")]
+          )
+        ])
+      ]
     )
   }
 ]
@@ -69018,6 +69124,7 @@ var staticRenderFns = [
             "a",
             {
               staticClass: "nav-link active",
+              staticStyle: { "padding-right": "5px", "padding-left": "5px" },
               attrs: {
                 id: "nav-active-tab",
                 "data-toggle": "tab",
@@ -69036,6 +69143,7 @@ var staticRenderFns = [
             "a",
             {
               staticClass: "nav-link",
+              staticStyle: { "padding-right": "5px", "padding-left": "5px" },
               attrs: {
                 id: "nav-completed-tab",
                 "data-toggle": "tab",

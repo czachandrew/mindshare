@@ -10,10 +10,10 @@
                <div class="col-md-12">
                <ul class="nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item">
-                     <a class="nav-link active" id="nav-active-tab" data-toggle="tab" href="#nav-active" role="tab" aria-controls="active" aria-selected="true">  Active</a>
+                     <a class="nav-link active" id="nav-active-tab" data-toggle="tab" href="#nav-active" role="tab" aria-controls="active" aria-selected="true" style="padding-right: 5px; padding-left:5px">  Active</a>
                   </li>
                   <li class="nav-item">
-                  <a class="nav-link" id="nav-completed-tab" data-toggle="tab" href="#nav-completed" role="tab" aria-controls="completed" aria-selected="false">  Completed&nbsp;</a>
+                  <a class="nav-link" id="nav-completed-tab" data-toggle="tab" href="#nav-completed" role="tab" aria-controls="completed" aria-selected="false" style="padding-right: 5px; padding-left:5px">  Completed&nbsp;</a>
                   </li>
                </ul>
                <div class="tab-content" id="myTabContent">

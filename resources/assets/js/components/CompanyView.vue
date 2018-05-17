@@ -55,9 +55,27 @@
         </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
-      <contacts-table :contacts.sync="company.contacts" :company="company" :company-id="company.id"></contacts-table>
-      <quotes-list :load-quotes="company.quotes"></quotes-list>
+      <div class="col-md-12 card card-body">
+        <ul class="nav nav-tabs" id="stuffTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="nav-contacts-tab" data-toggle="tab" href="#nav-contacts" role="tab" aria-controls="contacts" aria-selected="true" style="padding-right: 5px; padding-left: 5px;">Contacts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-quotes-tab" data-toggle="tab" href="#nav-quotes" role="tab" aria-controls="quotes" aria-selected="false" style="padding-right: 5px; padding-left: 5px;">Quotes</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="stuffTabContent" style="min-height: 350px;">
+          <div class="tab-pane fade active show" id="nav-contacts" role="tabpanel" aria-expanded="true" aria-labelledby="contacts-tab">
+            <contacts-table :contacts.sync="company.contacts" :company="company" :company-id="company.id"></contacts-table>
+          </div>
+          <div class="tab-pane" id="nav-quotes" role="tabpanel" aria-expanded="false" arira-labelledby="quotes-tab">
+            <quotes-list :load-quotes="company.quotes"></quotes-list>
+          </div>
+        </div>
+
+
+      
+      
       </div>
       <div class="col-md-12">
          <div class="card card-body">
