@@ -52,7 +52,9 @@ Route::get('/companies/lookup', 'CompanyController@lookup');
 
 Route::get('/companies/lookup/{term}', 'CompanyController@secondaryLookup');
 
-Route::get('/quote/{quote}', 'QuoteController@show');
+Route::get('/quotes/{quote}', 'QuoteController@show');
+
+Route::get('/quote/edit/{quote}', 'QuoteController@edit');
 
 Route::get('/quote/for/{company}', 'QuoteController@create');
 

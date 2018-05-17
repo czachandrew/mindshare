@@ -7,7 +7,7 @@
          <span v-if="isLoading">Loading ... </span>
       </div>
       <div class="form-group">
-         <input type="text" class="form-control" v-model="query" placeholder="Search..." />
+         <input type="text" class="form-control" @v-model="query" placeholder="Search..." />
          <button class="btn btn-primary" @click="get">Search</button>
       </div>
       <table class="table table-sm">
@@ -114,7 +114,7 @@ export default {
       get:function(){
          let self = this;
          console.log("here is the filter");
-         console.log(this.query);
+         console.log
          axios.post('/api/parts', {filter: self.query}).then(response => {
             console.log(response);
             self.parts = response.data.data;

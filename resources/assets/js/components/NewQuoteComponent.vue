@@ -3,13 +3,10 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="">
-              <button class="btn btn-primary btn-lg float-right" v-if="!isSaved && startState == 'create'" @click="createQuote">Save</button>
-              <button class="btn btn-primary btn-lg float-right" v-if="!isSaved && startState == 'edit'" @click="updateQuote">Update</button>
-              <button class="btn btn-primary btn-lg float-right" v-if="isSaved && startState == 'edit'" @click="isSaved = !isSaved">Edit</button>
-              <a v-if="isSaved" class="btn btn-success btn-lg float-right" :href="'/quotes/' + quote.id +'/pdf'" target="blank">Download PDF</a>
+              <button class="btn btn-primary btn-lg float-right" v-if="!isSaved" @click="createQuote">Save</button>
+              <a v-else class="btn btn-success btn-lg float-right" :href="'/quotes/' + quote.id +'/pdf'" target="blank">Download PDF</a>
                 
-                <h2 class="col-md-6"> <i class="fa fa-search-plus icon"></i> Quote <span v-if="company.name">for {{company.name}}</span></h2>
-
+                <h2> <i class="fa fa-search-plus icon"></i> Quote <span v-if="company.name">for {{company.name}}</span></h2>
                 
             </div>
             <hr>
@@ -24,27 +21,8 @@
             </div>
             <div class="container" id="printQuote">
             <div class="row">
-              <div class="col-md-6">
-                <h2 v-if="isSaved || startState == 'edit'" style="padding-bottom: 10px;">Quote # {{quote.ref_number}}</h2>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row" v-if="!isSaved">
-                  <label class="col-sm-2 col-form-label">
-                    Status:
-                  </label>
-                  <div class="col-sm-10">
-                    <select class="form-control" v-model="quote.status">
-                      <option>New</option>
-                      <option>Sent to Customer</option>
-                      <option>Cancelled</option>
-                      <option>Closed</option>
-                      <option>Won</option>
-                    </select>
-                  </div>
-                  
-                </div>
-                <h2 v-else>Status: {{quote.status}}</h2>
-               
+              <div class="col-md-12">
+                <h2 v-if="isSaved" style="padding-bottom: 10px;">Quote # {{quote.ref_number}} for {{company.name}}</h2>
               </div>
                 <div class="col-lg-3">
                     <div class="card height">
@@ -196,13 +174,13 @@
         </div>
     </div>
   </div>
-    <notes-component noteable-type="App\Quote" noteable-id="1" :starting-notes="[]"></notes-component>
+    <!-- <notes-component noteable-type="App\Quote" noteable-id="1" :starting-notes="[]"></notes-component>
     <modal v-model="show" @ok="show = false">
       <new-address :company="company" :type="newAddressType"></new-address>
     </modal>
     <modal v-model="showPartModal" @ok="showPartModal = false" @cancel="showPartModal = false" title="New Part">
       <create-part-form :modal="true"></create-part-form>
-    </modal>
+    </modal> -->
   </div>
 </div>
 </div>
@@ -237,14 +215,12 @@
 <script>
 import { modal } from 'vue-strap';
 import { datepicker } from 'vue-strap';
-import autocomplete from './Autocomplete.vue';
 
 export default {
    props:['loadCompany', 'loadQuote', 'startState'],
    components: {
       modal,
-      datepicker,
-      autocomplete
+      datepicker
    },
    data(){
       return {
@@ -262,7 +238,7 @@ export default {
          quote: {
             id:'',
             title:'',
-            good_until: moment().add(1,'months').format('YYYY-MM-DD'),
+            good_until: moment(),
             shipping_address_id:'',
             billing_address_id:'',
             billing_address_1:'',
@@ -280,8 +256,7 @@ export default {
             company_id:'',
             owner_id: Spark.state.user.id,
             value: 0,
-            ref_number:'',
-            status: 'New'
+            ref_number:''
          },
          shippingCosts: {
             'Best Ground': 10,
@@ -356,16 +331,6 @@ export default {
       this.submitType = 'update';
       this.isSaved = true;
 
-    },
-    updateQuote: function(){
-      let self = this;
-      this.quote.value = this.total
-      axios.post('/api/quotes/update/' + this.quote.id, {quote: this.quote, lineitems: this.lineitems}).then(response => {
-        console.log(response.data);
-        self.isSaved = true;
-      }).catch(error => {
-        console.log(error);
-      });
     },
     createQuote: function(){
       console.log(this.quote); 
@@ -474,14 +439,6 @@ export default {
          this.resetNewItem();
       },
       removeItem: function(key){
-        if(this.lineitems[key].id){
-          //need to delete this on the server 
-          axios.get('/api/lines/remove/' + this.lineitems[key].id).then(response => {
-            console.log(response);
-          }).catch(error => {
-            console.log(error.response);
-          });
-        }
          this.lineitems.splice(key, 1);
       },
       togglePartModal:function(){

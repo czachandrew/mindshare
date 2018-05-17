@@ -57,6 +57,7 @@
     <div class="row">
       <div class="col-md-12">
       <contacts-table :contacts.sync="company.contacts" :company="company" :company-id="company.id"></contacts-table>
+      <quotes-list :load-quotes="company.quotes"></quotes-list>
       </div>
       <div class="col-md-12">
          <div class="card card-body">

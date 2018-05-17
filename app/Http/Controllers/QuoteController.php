@@ -17,6 +17,7 @@ class QuoteController extends Controller
 
     public function show(Quote $quote){
     	//let's decided edit or create 
+        $quote->load(['lineitems']);
 
     	return view('quote', ['company' => $quote->company, 'quote' => $quote, 'start' => 'edit']);
     }
@@ -31,7 +32,28 @@ class QuoteController extends Controller
     }
 
     public function create(Company $company){
-    	return view('quote', ['company' => $company, 'quote' => '', 'start' => 'create']);
+        $quote =  new Quote;
+    	return view('quote', ['company' => $company, 'quote' => $quote, 'start' => 'create']);
+    }
+
+    public function update(Quote $quote, Request $request){
+        $quote->update($request->quote);
+        foreach($request->lineitems as $lineitem){
+            if(array_key_exists('id', $lineitem)){
+                $obj = LineItem::find($lineitem['id']);
+                $obj->update($lineitem);
+            } else {
+                //this is a new line item 
+                $quote->addLineItem($lineitem);
+            }
+ 
+        }
+        return $quote->load('lineitems');
+    }
+
+    public function delete(Quote $quote){
+        $quote->lineitems()->forceDelete();
+        return ['success'];
     }
 
     public function save(){

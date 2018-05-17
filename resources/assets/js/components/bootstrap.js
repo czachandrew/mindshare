@@ -53,6 +53,10 @@ import ImportComponent from './ImportComponent.vue';
 
 import PartsComponent from './PartsComponent.vue';
 
+import QuotesList from './QuotesList.vue';
+
+Vue.component('quotes-list', QuotesList);
+
 Vue.component('parts-component', PartsComponent);
 
 Vue.component('import-component', ImportComponent);

@@ -61,4 +61,8 @@ class Company extends Model
 	public function reps(){
 		return $this->belongsToMany('App\Company', 'company_rep','rep_id','company_id');
 	}
+
+	public function quotes(){
+		return $this->hasMany('App\Quote');
+	}
 }

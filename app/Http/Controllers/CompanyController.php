@@ -20,7 +20,7 @@ class CompanyController extends Controller
     }
 
     public function show(Company $company){
-    	return view('company')->with('company', $company->load(['notes', 'contacts','activities.tasks', 'tasks']));
+    	return view('company')->with('company', $company->load(['notes', 'contacts','activities.tasks', 'tasks','quotes']));
     }
 
     public function claim(Company $company){

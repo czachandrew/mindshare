@@ -9,12 +9,26 @@
                </span>
             </div>
          </div>
-         <div class="col-md-6">
-            <div class="btn-group" role="group" aria-label="Basic example">
+         <div class="col-md-6 row">
+          <div class="col-md-4">
+          <div class="btn-group" role="group" aria-label="Basic example">
              <button type="button" @click="toggleLimit" :class="[{'btn-primary':isUser,'btn-default':!isUser},'btn']">Assigned</button>
              <button type="button" @click="toggleLimit" :class="[{'btn-primary':!isUser,'btn-default':isUser},'btn']">All</button>
-
           </div>
+        </div>
+        <div class="col-md-8">
+              <div class="form-group row">
+                <label class="col-md-6">
+                  Per Page:
+                </label>
+                <select class="col-md-4" v-model="pagination.per_page" @change="updateResults">
+                  <option>5</option>
+                  <option>10</option>
+                  <option>15</option>
+                  <option>25</option>
+                </select>
+             </div>
+           </div>
        </div>
     </div>
       <table class="table">
@@ -133,20 +147,24 @@ export default {
       search: function(){
          console.log('Searching');
          let self = this; 
-         axios.post('/api/companies/paginated', {filter: this.query, limit:this.limit, per_page: 5}).then(response => {
+         axios.post('/api/companies/paginated', {filter: this.query, limit:this.limit, per_page:this.pagination.per_page}).then(response => {
             console.log(response);
             self.companies = response.data.data;
             self.pagination = response.data;
+            self.pagination.filter = self.query; 
+            self.pagination.limit = self.limit;
          }).catch(error => {
             console.log(error);
          })
       },
       updateResults: function(){
          let self = this;
-         axios.post('/api/companies/paginated',{filter: this.query, limit:this.limit, per_page: 5}).then(response => {
+         axios.post('/api/companies/paginated',{filter: this.query, limit:this.limit, per_page:this.pagination.per_page}).then(response => {
             console.log(response);
             self.companies = response.data.data;
             self.pagination = response.data;
+            self.pagination.filter = self.query; 
+            self.pagination.limit = self.limit;
          })
       },
       nextPage:function(){
@@ -156,7 +174,9 @@ export default {
          axios.post(this.pagination.next_page_url, this.pagination).then(response => {
             console.log(response);
             self.companies = response.data.data;
-            self.pagination = response.data; 
+            self.pagination = response.data;
+            self.pagination.filter = self.query; 
+            self.pagination.limit = self.limit;
          });
       },
       prevPage:function(){
@@ -166,7 +186,9 @@ export default {
          axios.post(this.pagination.prev_page_url, this.pagination).then(response => {
             console.log(response);
             self.companies = response.data.data;
-            self.pagination = response.data; 
+            self.pagination = response.data;
+            self.pagination.filter = self.query; 
+            self.pagination.limit = self.limit; 
          });
       },
       getPage:function(page){
@@ -174,7 +196,9 @@ export default {
          axios.post(this.pagination.path + '?page=' + page, this.pagination).then(response => {
             console.log(response);
             self.companies = response.data.data;
-            self.pagination = response.data; 
+            self.pagination = response.data;
+            self.pagination.filter = self.query; 
+            self.pagination.limit = self.limit; 
          })
       }
    },

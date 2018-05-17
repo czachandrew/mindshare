@@ -68,6 +68,10 @@ Route::group([
 
     Route::get('/quotes/{quote}/pdf', 'QuoteController@download');
 
+    Route::post('/quotes/update/{quote}', 'QuoteController@update');
+
+    Route::get('/lines/remove/{lineitem}', 'LineItemController@delete');
+
     Route::post('/parts', 'PartController@list');
 
     Route::post('/parts/update/{part}', 'PartController@update');
