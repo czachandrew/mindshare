@@ -20,7 +20,7 @@
                   </div>
                   <div class="form-group">
                      <label for="due_date">Due Date: </label>
-                     <datepicker v-model="task.due_date" :clear-button="true" format="YYYY-MM-DD" icons-font="fa"></datepicker>         
+                     <datepicker v-model="task.due_date" :clear-button="true" format="yyyy-MM-dd" icons-font="fa"></datepicker>         
                   </div>
                   <div class="form-check">
                      <input type="checkbox" class="form-check-input" v-model="task.reminder"> 
@@ -78,7 +78,7 @@ export default{
             //clear the task object
             self.task.title = ''
             self.task.description = ''
-            self.task.due_date = new Date().toDateString();
+            self.task.due_date = moment().format('YYYY-MM-DD');
             self.task.taskable_type = 'none'
             self.task.taskable_id = ''
             $('#taskmodal').modal('hide');

@@ -6037,7 +6037,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //clear the task object
             self.task.title = '';
             self.task.description = '';
-            self.task.due_date = new Date().toDateString();
+            self.task.due_date = moment().format('YYYY-MM-DD');
             self.task.taskable_type = 'none';
             self.task.taskable_id = '';
             __WEBPACK_IMPORTED_MODULE_1_jquery___default()('#taskmodal').modal('hide');
@@ -68297,7 +68297,7 @@ var render = function() {
                   _c("datepicker", {
                     attrs: {
                       "clear-button": true,
-                      format: "YYYY-MM-DD",
+                      format: "yyyy-MM-dd",
                       "icons-font": "fa"
                     },
                     model: {
