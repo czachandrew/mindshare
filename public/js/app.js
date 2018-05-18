@@ -68297,7 +68297,7 @@ var render = function() {
                   _c("datepicker", {
                     attrs: {
                       "clear-button": true,
-                      format: "yyyy-MM-dd",
+                      format: "YYYY-MM-DD",
                       "icons-font": "fa"
                     },
                     model: {
