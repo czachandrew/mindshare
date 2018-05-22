@@ -153,6 +153,9 @@ export default {
             self.pagination = response.data;
             self.pagination.filter = self.query; 
             self.pagination.limit = self.limit;
+            localStorage.setItem('recent-search', JSON.stringify(self.pagination));
+            localStorage.setItem('recent-query', JSON.stringify(self.query));
+            localStorage.setItem('recent-limit', JSON.stringify(self.limit));
          }).catch(error => {
             console.log(error);
          })
@@ -165,6 +168,9 @@ export default {
             self.pagination = response.data;
             self.pagination.filter = self.query; 
             self.pagination.limit = self.limit;
+            localStorage.setItem('recent-search', JSON.stringify(self.pagination));
+            localStorage.setItem('recent-query', JSON.stringify(self.query));
+            localStorage.setItem('recent-limit', JSON.stringify(self.limit));
          })
       },
       nextPage:function(){
@@ -175,8 +181,12 @@ export default {
             console.log(response);
             self.companies = response.data.data;
             self.pagination = response.data;
+
             self.pagination.filter = self.query; 
             self.pagination.limit = self.limit;
+            localStorage.setItem('recent-search', JSON.stringify(self.pagination));
+            localStorage.setItem('recent-query', JSON.stringify(self.query));
+            localStorage.setItem('recent-limit', JSON.stringify(self.limit));
          });
       },
       prevPage:function(){
@@ -189,6 +199,9 @@ export default {
             self.pagination = response.data;
             self.pagination.filter = self.query; 
             self.pagination.limit = self.limit; 
+            localStorage.setItem('recent-search', JSON.stringify(self.pagination));
+            localStorage.setItem('recent-query', JSON.stringify(self.query));
+            localStorage.setItem('recent-limit', JSON.stringify(self.limit));
          });
       },
       getPage:function(page){
@@ -199,14 +212,26 @@ export default {
             self.pagination = response.data;
             self.pagination.filter = self.query; 
             self.pagination.limit = self.limit; 
+            localStorage.setItem('recent-search', JSON.stringify(self.pagination));
+            localStorage.setItem('recent-query', JSON.stringify(self.query));
+            localStorage.setItem('recent-limit', JSON.stringify(self.limit));
          })
       }
    },
    mounted(){
       window.Echo.channel('spark-notifications').listen('Laravel\Spark\Events\NotificationCreated', e => {
          console.log(e);
-      } )
+      });
       console.log('Company list mounted');
+      
+      let self = this;
+      //check and see if there
+      if(localStorage.getItem('recent-search')){
+        self.pagination = JSON.parse(localStorage.getItem('recent-search'));
+        self.companies = self.pagination.data;
+        self.limit = JSON.parse(localStorage.getItem('recent-limit'));
+        self.query = JSON.parse(localSotorage.getItem('recent-query'));
+      }
       this.updateResults();
    }
 }

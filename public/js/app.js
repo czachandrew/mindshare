@@ -3667,6 +3667,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             self.pagination = response.data;
             self.pagination.filter = self.query;
             self.pagination.limit = self.limit;
+            localStorage.setItem('recent-search', JSON.stringify(self.pagination));
+            localStorage.setItem('recent-query', JSON.stringify(self.query));
+            localStorage.setItem('recent-limit', JSON.stringify(self.limit));
          }).catch(function (error) {
             console.log(error);
          });
@@ -3679,6 +3682,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             self.pagination = response.data;
             self.pagination.filter = self.query;
             self.pagination.limit = self.limit;
+            localStorage.setItem('recent-search', JSON.stringify(self.pagination));
+            localStorage.setItem('recent-query', JSON.stringify(self.query));
+            localStorage.setItem('recent-limit', JSON.stringify(self.limit));
          });
       },
       nextPage: function nextPage() {
@@ -3689,8 +3695,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(response);
             self.companies = response.data.data;
             self.pagination = response.data;
+
             self.pagination.filter = self.query;
             self.pagination.limit = self.limit;
+            localStorage.setItem('recent-search', JSON.stringify(self.pagination));
+            localStorage.setItem('recent-query', JSON.stringify(self.query));
+            localStorage.setItem('recent-limit', JSON.stringify(self.limit));
          });
       },
       prevPage: function prevPage() {
@@ -3703,6 +3713,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             self.pagination = response.data;
             self.pagination.filter = self.query;
             self.pagination.limit = self.limit;
+            localStorage.setItem('recent-search', JSON.stringify(self.pagination));
+            localStorage.setItem('recent-query', JSON.stringify(self.query));
+            localStorage.setItem('recent-limit', JSON.stringify(self.limit));
          });
       },
       getPage: function getPage(page) {
@@ -3713,6 +3726,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             self.pagination = response.data;
             self.pagination.filter = self.query;
             self.pagination.limit = self.limit;
+            localStorage.setItem('recent-search', JSON.stringify(self.pagination));
+            localStorage.setItem('recent-query', JSON.stringify(self.query));
+            localStorage.setItem('recent-limit', JSON.stringify(self.limit));
          });
       }
    },
@@ -3721,6 +3737,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          console.log(e);
       });
       console.log('Company list mounted');
+
+      var self = this;
+      //check and see if there
+      if (localStorage.getItem('recent-search')) {
+         self.pagination = JSON.parse(localStorage.getItem('recent-search'));
+         self.companies = self.pagination.data;
+         self.limit = JSON.parse(localStorage.getItem('recent-limit'));
+         self.query = JSON.parse(localSotorage.getItem('recent-query'));
+      }
       this.updateResults();
    }
 });
