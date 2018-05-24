@@ -55,7 +55,7 @@ class UserMentioned extends Notification
         if(strpos($this->type, 'Task')){
             //let's create the body here
             $message = $this->author->name . ' just mentioned you in a Task ' . $this->truncate($this->typeobj->title);
-            $action = "/task/" . $this->typeobj->id;
+            $action = "/tasks/" . $this->typeobj->id;
         } elseif(strpos($this->type, 'Quote')) {
             //it's a quote 
             $message = $this->author->name . ' just mentioned you on a Quote ' . $this->typeobj->title; 
@@ -95,7 +95,7 @@ class UserMentioned extends Notification
         if(strpos($this->type, 'Task')){
             //let's create the body here
             $message = $this->author->name . ' just mentioned you in a Task ' . $this->typeobj->title;
-            $action = "/task/" . $this->typeobj->id;
+            $action = "/tasks/" . $this->typeobj->id;
         } elseif(strpos($this->type, 'Quote')) {
             //it's a quote 
             $message = $this->author->name . ' just mentioned you on a ' . $this->typeobj->title; 

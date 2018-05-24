@@ -39,10 +39,24 @@
 </template>
 <script> 
 export default {
+   props: {
+      loadTask: {
+         type: Object, 
+         default: null
+      }
+   },
    data(){
       return {
          task:{},
 
+      }
+   },
+   watch: {
+      loadTask: function(){
+         if(this.loadTask !== null){
+            this.task = this.loadTask;
+            $('#zoomModal').modal('show');
+         }
       }
    },
    computed: {
@@ -85,5 +99,5 @@ export default {
       })
 
    }
-}
+};
 </script>

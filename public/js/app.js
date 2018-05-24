@@ -6175,6 +6175,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+   props: {
+      loadTask: {
+         type: Object,
+         default: null
+      }
+   },
    data: function data() {
       return {
          task: {}
@@ -6182,6 +6188,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
    },
 
+   watch: {
+      loadTask: function loadTask() {
+         if (this.loadTask !== null) {
+            this.task = this.loadTask;
+            $('#zoomModal').modal('show');
+         }
+      }
+   },
    computed: {
       computedStatus: function computedStatus() {
          var d1 = new Date();

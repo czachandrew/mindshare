@@ -17,6 +17,10 @@ class TaskController extends Controller
 
     }
 
+    public function show(Task $task){
+        return view('task', ['task' => $task]);
+    }
+
     public function create(Request $request){
     	Log::info('Creating a task');
     	Log::info($request->all());

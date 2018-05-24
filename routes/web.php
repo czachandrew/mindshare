@@ -26,6 +26,8 @@ Route::get('/notification/{user}', function(User $user){
 	$user->notify(new YouWereMentioned);
 });
 
+Route::get('/tasks/{task}', 'TaskController@show');
+
 Route::get('/home', 'HomeController@show');
 
 Route::get('/customer', 'CustomerController@show');

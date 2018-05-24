@@ -85,7 +85,7 @@
 }
 </style>
 <script>
-import { tabset, tab, tabs } from 'vue-strap'
+import { tabset, tab, tabs } from 'vue-strap';
    export default {
       props: ['loadTasks','taskScope', 'parentId'],
       components: {
