@@ -230,7 +230,7 @@ export default {
         self.pagination = JSON.parse(localStorage.getItem('recent-search'));
         self.companies = self.pagination.data;
         self.limit = JSON.parse(localStorage.getItem('recent-limit'));
-        self.query = JSON.parse(localSotorage.getItem('recent-query'));
+        self.query = JSON.parse(localStorage.getItem('recent-query'));
       }
       this.updateResults();
    }

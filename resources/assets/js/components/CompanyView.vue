@@ -69,7 +69,7 @@
             <contacts-table :contacts.sync="company.contacts" :company="company" :company-id="company.id"></contacts-table>
           </div>
           <div class="tab-pane" id="nav-quotes" role="tabpanel" aria-expanded="false" arira-labelledby="quotes-tab">
-            <quotes-list :load-quotes="company.quotes"></quotes-list>
+            <quotes-list v-if="currentCompany.quotes" :load-quotes="currentCompany.quotes"></quotes-list>
           </div>
         </div>
 
@@ -79,7 +79,7 @@
       </div>
       <div class="col-md-12">
          <div class="card card-body">
-            <notes-component noteable-type="App\Company" :noteable-id="company.id" :starting-notes="company.notes"></notes-component>
+            <notes-component noteable-type="App\Company" :noteable-id="currentCompany.id" :starting-notes="company.notes" marker="abazaba"></notes-component>
          </div>
          <activity-list :parent="company" :parent-id="company.id"></activity-list>
       </div>
@@ -111,7 +111,9 @@ export default {
             title:'',
             description: ''
          },
-         company:{},
+         company:{
+            id:''
+         },
          currentUser: Spark.state.user.id 
       }
    },
@@ -164,6 +166,7 @@ export default {
    mounted(){
       console.log('Company View has been mounted');
       console.log(this.company);
+      console.log(this.currentCompany);
       let self = this;
       this.$eventHub.$on('contact-created', payload => {
          self.success.title = "Contact Created!";

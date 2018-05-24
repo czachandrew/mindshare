@@ -14,7 +14,7 @@ class SparkServiceProvider extends ServiceProvider
      */
     protected $details = [
         'vendor' => 'Your Company',
-        'product' => 'Your Product',
+        'product' => 'Mindshare',
         'street' => 'PO Box 111',
         'location' => 'Your Town, NY 12345',
         'phone' => '555-555-5555',

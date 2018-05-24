@@ -45,4 +45,8 @@ class Quote extends Model
     public function addLineItem($item){
         return $this->lineitems()->create($item);
     }
+
+    public function notes(){
+        return $this->morphMany('App\Note', 'noteable');
+    }
 }

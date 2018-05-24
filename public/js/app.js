@@ -3744,7 +3744,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          self.pagination = JSON.parse(localStorage.getItem('recent-search'));
          self.companies = self.pagination.data;
          self.limit = JSON.parse(localStorage.getItem('recent-limit'));
-         self.query = JSON.parse(localSotorage.getItem('recent-query'));
+         self.query = JSON.parse(localStorage.getItem('recent-query'));
       }
       this.updateResults();
    }
@@ -3872,7 +3872,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             title: '',
             description: ''
          },
-         company: {},
+         company: {
+            id: ''
+         },
          currentUser: Spark.state.user.id
       };
    },
@@ -3923,6 +3925,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
    mounted: function mounted() {
       console.log('Company View has been mounted');
       console.log(this.company);
+      console.log(this.currentCompany);
       var self = this;
       this.$eventHub.$on('contact-created', function (payload) {
          self.success.title = "Contact Created!";
@@ -4763,7 +4766,7 @@ window.$ = window.jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-   props: ['noteableType', 'noteableId', 'startingNotes'],
+   props: ['noteableType', 'noteableId', 'startingNotes', 'marker'],
    data: function data() {
       return {
          newNote: {
@@ -4780,6 +4783,9 @@ window.$ = window.jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
    watch: {
       startingNotes: function startingNotes() {
          this.notes = this.startingNotes;
+      },
+      noteableId: function noteableId() {
+         this.newNote.noteable_id = this.noteableId;
       }
    },
    methods: {
@@ -4823,14 +4829,16 @@ window.$ = window.jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
          self.notes.push(payload);
       });
 
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#note' + this.noteableId).atwho({
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#note' + this.noteableId + this.marker).atwho({
          at: "@",
-         delay: 750,
+         delay: 150,
          callbacks: {
             remoteFilter: function remoteFilter(query, callback) {
                axios.get("/api/lookups/agents/" + query).then(function (response) {
                   console.log(response.data);
                   callback(response.data);
+                  //when a use is a selected, send a notification with an associated note
+                  //
                });
                console.log('called');
             }
@@ -5421,7 +5429,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          axios.post('/api/quotes/create', { quote: this.quote, lineitems: this.lineitems }).then(function (response) {
             console.log(response);
             self.loadCreatedQuote(response.data);
-            self.isSaved = true;
+            //redirect to the quote view 
+            window.location.replace('/quotes/' + response.data.id);
+            //self.isSaved = true;
          }).catch(function (error) {
             console.log(error);
          });
@@ -67928,9 +67938,11 @@ var render = function() {
                     }
                   },
                   [
-                    _c("quotes-list", {
-                      attrs: { "load-quotes": _vm.company.quotes }
-                    })
+                    _vm.currentCompany.quotes
+                      ? _c("quotes-list", {
+                          attrs: { "load-quotes": _vm.currentCompany.quotes }
+                        })
+                      : _vm._e()
                   ],
                   1
                 )
@@ -67949,8 +67961,9 @@ var render = function() {
                   _c("notes-component", {
                     attrs: {
                       "noteable-type": "App\\Company",
-                      "noteable-id": _vm.company.id,
-                      "starting-notes": _vm.company.notes
+                      "noteable-id": _vm.currentCompany.id,
+                      "starting-notes": _vm.company.notes,
+                      marker: "abazaba"
                     }
                   })
                 ],
@@ -68843,7 +68856,8 @@ var render = function() {
                   attrs: {
                     "noteable-id": _vm.task.id,
                     "noteable-type": "App\\Task",
-                    "starting-notes": _vm.task.notes
+                    "starting-notes": _vm.task.notes,
+                    marker: "scooby"
                   }
                 })
               ],
@@ -70788,13 +70802,15 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("notes-component", {
-            attrs: {
-              "noteable-type": "App\\Quote",
-              "noteable-id": "1",
-              "starting-notes": []
-            }
-          }),
+          _vm.isSaved
+            ? _c("notes-component", {
+                attrs: {
+                  "noteable-type": "App\\Quote",
+                  "noteable-id": _vm.quote.id,
+                  "starting-notes": _vm.quote.notes
+                }
+              })
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "modal",
@@ -71655,7 +71671,11 @@ var render = function() {
               }
             ],
             staticClass: "form-control",
-            attrs: { rows: "3", name: "note", id: "note" + _vm.noteableId },
+            attrs: {
+              rows: "3",
+              name: "note",
+              id: "note" + _vm.noteableId + _vm.marker
+            },
             domProps: { value: _vm.newNote.content },
             on: {
               input: function($event) {

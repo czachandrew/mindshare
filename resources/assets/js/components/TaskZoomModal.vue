@@ -28,7 +28,7 @@
                   </div>
                </div>
                
-               <notes-component :noteable-id="task.id" noteable-type="App\Task" v-bind:starting-notes="task.notes"></notes-component>
+               <notes-component :noteable-id="task.id" noteable-type="App\Task" v-bind:starting-notes="task.notes" marker="scooby"></notes-component>
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-primary" @click="update">Update</button>

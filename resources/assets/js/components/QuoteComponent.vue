@@ -196,7 +196,7 @@
         </div>
     </div>
   </div>
-    <notes-component noteable-type="App\Quote" noteable-id="1" :starting-notes="[]"></notes-component>
+    <notes-component v-if="isSaved" noteable-type="App\Quote" :noteable-id="quote.id" :starting-notes="quote.notes"></notes-component>
     <modal v-model="show" @ok="show = false">
       <new-address :company="company" :type="newAddressType"></new-address>
     </modal>
@@ -359,7 +359,7 @@ export default {
     },
     updateQuote: function(){
       let self = this;
-      this.quote.value = this.total
+      this.quote.value = this.total;
       axios.post('/api/quotes/update/' + this.quote.id, {quote: this.quote, lineitems: this.lineitems}).then(response => {
         console.log(response.data);
         self.isSaved = true;
@@ -376,7 +376,9 @@ export default {
       axios.post('/api/quotes/create', {quote: this.quote, lineitems: this.lineitems}).then(response => {
         console.log(response);
         self.loadCreatedQuote(response.data);
-        self.isSaved = true;
+        //redirect to the quote view 
+        window.location.replace('/quotes/' + response.data.id);
+        //self.isSaved = true;
       }).catch(error => {
         console.log(error);
       });

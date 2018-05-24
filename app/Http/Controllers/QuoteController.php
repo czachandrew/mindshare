@@ -17,7 +17,7 @@ class QuoteController extends Controller
 
     public function show(Quote $quote){
     	//let's decided edit or create 
-        $quote->load(['lineitems']);
+        $quote->load(['lineitems', 'notes']);
 
     	return view('quote', ['company' => $quote->company, 'quote' => $quote, 'start' => 'edit']);
     }

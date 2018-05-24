@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
+
 use Laravel\Spark\User as SparkUser;
+use Illuminate\Notifications\Notifiable;
 
 class User extends SparkUser
 {

@@ -7,7 +7,7 @@
                <!-- <at-ta v-model="newNote.content" :members="users" name-key="name">
                   <textarea class="form-control" rows="3"></textarea>
                </at-ta> --> 
-              <textarea class="form-control" rows="3" v-model="newNote.content" name="note" :id="'note' + noteableId"></textarea>
+              <textarea class="form-control" rows="3" v-model="newNote.content" name="note" :id="'note' + noteableId + marker"></textarea>
             </div>
             <div class="form-group">
                <button class="btn btn-primary" @click="create">Add Note</button>
@@ -35,7 +35,7 @@ window.$ = window.jQuery = $;
 import 'jquery.caret';
 import 'at.js';
 export default {
-   props:['noteableType','noteableId', 'startingNotes'],
+   props:['noteableType','noteableId', 'startingNotes', 'marker'],
    data(){
       return {
          newNote:{
@@ -51,6 +51,9 @@ export default {
    watch: {
       startingNotes: function(){
          this.notes = this.startingNotes;
+      },
+      noteableId: function(){
+         this.newNote.noteable_id = this.noteableId;
       }
    },
    methods:{
@@ -92,14 +95,16 @@ export default {
          self.notes.push(payload);
       })
 
-      $('#note'+this.noteableId).atwho({
+      $('#note' + this.noteableId + this.marker).atwho({
          at: "@",
-         delay: 750,
+         delay: 150,
          callbacks: {
             remoteFilter: function(query, callback){
                axios.get("/api/lookups/agents/" + query).then(response => {
                   console.log(response.data);
                   callback(response.data);
+                  //when a use is a selected, send a notification with an associated note
+                  //
                })
                console.log('called');
             }
