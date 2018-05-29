@@ -20,6 +20,10 @@ Route::group([
 
     Route::get('/lookups/companies/{term}', 'LookupController@companies');
 
+    Route::post('/favorites/create', 'FavoriteController@create');
+
+    Route::post('/favorites/remove/{favorite}', 'FavoriteController@remove');
+
     Route::get('/tasks', 'TaskController@list');
 
     Route::get ('/tasks/{task}', 'TaskController@details');

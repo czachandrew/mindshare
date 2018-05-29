@@ -65,4 +65,8 @@ class Company extends Model
 	public function quotes(){
 		return $this->hasMany('App\Quote');
 	}
+
+	public function favorite(){
+		return $this->morphMany('App\Favorite', 'favoritable');
+	}
 }

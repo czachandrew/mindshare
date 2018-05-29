@@ -67,4 +67,8 @@ class User extends SparkUser
     public function companies(){
         return $this->hasMany('App\Company');
     }
+
+    public function favorites(){
+        return $this->hasMany('App\Favorite');
+    }
 }

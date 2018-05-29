@@ -20,7 +20,7 @@ class CompanyController extends Controller
     }
 
     public function show(Company $company){
-    	return view('company')->with('company', $company->load(['notes', 'contacts','activities.tasks', 'tasks','quotes']));
+    	return view('company')->with('company', $company->load(['notes', 'contacts','activities.tasks', 'tasks','quotes','favorite']));
     }
 
     public function claim(Company $company){
@@ -182,7 +182,14 @@ class CompanyController extends Controller
                 $request->where('name', 'LIKE','%'.$filter.'%');
             }
             return $request->paginate($perPage);
-        } else {
+        } else if($limit === 'fav') {
+            $all = collect();
+            $result = $user->favorites->load('favoritable')->each(function ($company) use (&$all) {
+                    $all->push($company->favoritable);
+                });
+            return ['data' => $all];
+
+        }else {
             if($filter){
                 return $request = Company::where('name', 'LIKE', '%'.$filter .'%')->paginate($perPage);
             } else {

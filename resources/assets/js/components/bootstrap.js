@@ -55,6 +55,10 @@ import PartsComponent from './PartsComponent.vue';
 
 import QuotesList from './QuotesList.vue';
 
+import FavoriteButton from './FavoriteButton.vue';
+
+Vue.component('fav-button', FavoriteButton);
+
 Vue.component('quotes-list', QuotesList);
 
 Vue.component('parts-component', PartsComponent);

@@ -8,8 +8,10 @@
                    <div class="row">
                        <div class="col-sm-6 col-md-4">
                            <img src="http://placehold.it/380x500" alt="" class="rounded img-fluid" />
+                           <fav-button favtype="App\Company" :typeid="company.id" :favorite="company.favorite"></fav-button>
                        </div>
                        <div class="col-sm-6 col-md-8" style="height:100%">
+
                            <h4>
                                {{company.name}}</h4>
                            <small><cite :title="company.billing_city + ', USA'">{{company.billing_city}}, USA <i class="fa fa-map-pin">

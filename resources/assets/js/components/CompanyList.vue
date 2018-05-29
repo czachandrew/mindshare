@@ -12,8 +12,9 @@
          <div class="col-md-6 row">
           <div class="col-md-4">
           <div class="btn-group" role="group" aria-label="Basic example">
-             <button type="button" @click="toggleLimit" :class="[{'btn-primary':isUser,'btn-default':!isUser},'btn']">Assigned</button>
-             <button type="button" @click="toggleLimit" :class="[{'btn-primary':!isUser,'btn-default':isUser},'btn']">All</button>
+             <button type="button" @click="toggleLimit('user')" :class="[{'btn-primary':isUser,'btn-default':!isUser},'btn']">Assigned</button>
+             <button type="button" @click="toggleLimit('')" :class="[{'btn-primary':isAll,'btn-default':!isAll},'btn']">All</button>
+             <button type="button" @click="toggleLimit('fav')" :class="[{'btn-primary':isFav, 'btn-default':!isFav}]">Favs</button>
           </div>
         </div>
         <div class="col-md-8">
@@ -104,6 +105,20 @@ export default {
             return false;
          }
       },
+      isAll(){
+        if(this.limit === ''){
+          return true; 
+        } else {
+          return false; 
+        }
+      },
+      isFav(){
+        if(this.limit ==='fav'){
+          return true;
+        } else {
+          return false;
+        }
+      },
       pagesNumber() {
         if (!this.pagination.to) {
           return [];
@@ -134,13 +149,14 @@ export default {
          }
          
       },
-      toggleLimit: function(){
+      toggleLimit: function(limit){
          console.log('Toggle Time!');
-         if(this.limit === 'user') {
-            this.limit = '';
-         } else {
-            this.limit = 'user';
-         }
+         this.limit = limit;
+         //if(this.limit === 'user') {
+            //this.limit = '';
+         //} else {
+           // this.limit = 'user';
+         //}
 
          this.updateResults();
       },
