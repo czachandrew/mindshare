@@ -4348,6 +4348,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_strap__ = __webpack_require__("./node_modules/vue-strap/dist/vue-strap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_strap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_strap__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4381,7 +4388,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+   components: {
+      alert: __WEBPACK_IMPORTED_MODULE_0_vue_strap__["alert"]
+   },
    props: {
       modal: {
          type: Boolean,
@@ -4398,7 +4409,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             floor: '',
             image: '',
             status: 'active'
-         }
+         },
+         showAlert: false,
+         newPart: ''
       };
    },
 
@@ -4412,6 +4425,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (_this.modal === true) {
                //this form is in a modal so we need to broadcast the new part
                self.$eventHub.$emit('part-created', response.data);
+            } else {
+               //clear the form 
+               self.newPart = self.part.part_number;
+               self.part.part_number = '';
+               self.part.description = '';
+               self.part.suggested_price = '';
+               self.part.cost = '';
+               self.part.floor = '';
+               self.part.image = '';
+               self.showAlert = true;
+
+               //notify user of success
             }
          }).catch(function (error) {
             console.log(error);
@@ -67828,155 +67853,186 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("form", { staticClass: "form" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Part Number")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.part.part_number,
-              expression: "part.part_number"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text" },
-          domProps: { value: _vm.part.part_number },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+  return _c(
+    "div",
+    [
+      _c("form", { staticClass: "form" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Part Number")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.part.part_number,
+                expression: "part.part_number"
               }
-              _vm.$set(_vm.part, "part_number", $event.target.value)
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.part.part_number },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.part, "part_number", $event.target.value)
+              }
             }
-          }
-        })
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Description")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.part.description,
+                expression: "part.description"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.part.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.part, "description", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Suggested Price")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.part.suggested_price,
+                expression: "part.suggested_price"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.part.suggested_price },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.part, "suggested_price", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Cost")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.part.cost,
+                expression: "part.cost"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.part.cost },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.part, "cost", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Floor")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.part.floor,
+                expression: "part.floor"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.part.floor },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.part, "floor", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Image")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "file" },
+            on: { change: _vm.fileUploaded }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Description")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.part.description,
-              expression: "part.description"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text" },
-          domProps: { value: _vm.part.description },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.part, "description", $event.target.value)
-            }
-          }
-        })
-      ]),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", on: { click: _vm.createPart } },
+        [_vm._v("Create Part ")]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Suggested Price")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.part.suggested_price,
-              expression: "part.suggested_price"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text" },
-          domProps: { value: _vm.part.suggested_price },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.part, "suggested_price", $event.target.value)
-            }
+      _c(
+        "alert",
+        {
+          attrs: {
+            placement: "top-right",
+            duration: "3000",
+            type: "success",
+            width: "400px",
+            dismissable: ""
+          },
+          model: {
+            value: _vm.showAlert,
+            callback: function($$v) {
+              _vm.showAlert = $$v
+            },
+            expression: "showAlert"
           }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Cost")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.part.cost,
-              expression: "part.cost"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text" },
-          domProps: { value: _vm.part.cost },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.part, "cost", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Floor")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.part.floor,
-              expression: "part.floor"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text" },
-          domProps: { value: _vm.part.floor },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.part, "floor", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Image")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "file" },
-          on: { change: _vm.fileUploaded }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "btn btn-primary", on: { click: _vm.createPart } },
-      [_vm._v("Create Part ")]
-    )
-  ])
+        },
+        [
+          _c("strong", [_vm._v(" Part Created!")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(_vm._s(_vm.newPart) + " has been added to the database")
+          ])
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

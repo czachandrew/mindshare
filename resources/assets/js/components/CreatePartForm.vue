@@ -28,10 +28,19 @@
          
       </form>
       <button class="btn btn-primary" @click="createPart">Create Part </button>
+      <alert v-model="showAlert" placement="top-right" duration="3000" type="success" width="400px" dismissable>
+         <strong> Part Created!</strong>
+         <p>{{newPart}} has been added to the database</p>
+
+      </alert>
    </div>
 </template>
 <script>
+import { alert } from 'vue-strap'
 export default {
+   components: {
+      alert
+   },
    props:{
       modal:{
          type:Boolean,
@@ -48,7 +57,9 @@ export default {
             floor:'',
             image:'',
             status:'active',
-         }
+         },
+         showAlert: false,
+         newPart: '',
       }
    },
    methods: {
@@ -59,6 +70,19 @@ export default {
             if(this.modal === true){
                //this form is in a modal so we need to broadcast the new part
                self.$eventHub.$emit('part-created', response.data);
+            } else {
+               //clear the form 
+               self.newPart = self.part.part_number;
+               self.part.part_number ='';
+               self.part.description = '';
+               self.part.suggested_price = ''; 
+               self.part.cost = '';
+               self.part.floor = '';
+               self.part.image = ''; 
+               self.showAlert = true;
+
+
+               //notify user of success
             }
          }).catch(error => {
             console.log(error);
