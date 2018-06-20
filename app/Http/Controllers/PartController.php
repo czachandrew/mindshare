@@ -52,7 +52,7 @@ class PartController extends Controller
                 $part = [
                     'part_number' => $row->partnumber,
                     'description' => $row->shortdescription,
-                    'cost' => 0.00,
+                    'cost' => $row->cost,
                     'suggested_price' => $row->retail,
                     'floor' => $row->floor, 
                     'image' => $row->image1, 
