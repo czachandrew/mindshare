@@ -37,8 +37,10 @@ class QuoteController extends Controller
 
     public function createLiteQuote(Request $request){
         //contains customer, customerEmail and line items 
+        $data = $request->all();
+        $data->ref_number = "QUOTE#003";
         $pdf = PDF::loadview('litequote', ['quote' => $request->all()]); 
-        return $pdf->download('Quote for ' . $quote->request->customer . '.pdf');
+        return $pdf->save('Quote for ' . $quote->request->customer . '.pdf');
     }
 
     public function create(Company $company){

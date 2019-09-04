@@ -66,15 +66,17 @@ Route::group([
 
     Route::get('/address/lookup/{term}', 'CompanyController@addressLookup');
 
-    Route::post('/quotes/test', 'QuoteController@test')->middleware('client');
+    Route::post('/quotes/test', 'QuoteController@test');
 
-    Route::get('/quotes/{quote}', 'QuoteController@details')->middleware('client');
+    Route::get('/quotes/{quote}', 'QuoteController@details');
 
-    Route::post('/quotes/create', 'QuoteController@save')->middleware('client');
+    Route::post('/quotes/lite', 'QuoteController@createLiteQuote');
 
-    Route::get('/quotes/{quote}/pdf', 'QuoteController@download')->middleware('client');
+    Route::post('/quotes/create', 'QuoteController@save');
 
-    Route::post('/quotes/update/{quote}', 'QuoteController@update')->middleware('client');
+    Route::get('/quotes/{quote}/pdf', 'QuoteController@download');
+
+    Route::post('/quotes/update/{quote}', 'QuoteController@update');
 
     Route::get('/lines/remove/{lineitem}', 'LineItemController@delete');
 
