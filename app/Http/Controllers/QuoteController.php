@@ -22,6 +22,10 @@ class QuoteController extends Controller
     	return view('quote', ['company' => $quote->company, 'quote' => $quote, 'start' => 'edit']);
     }
 
+    public function test(){
+        return ['status' => 'success'];
+    }
+
     public function download(Quote $quote){
     	$quote->load('lineitems', 'shippingAddress','billingAddress', 'company','owner')->find(17);
     	Log::info($quote);

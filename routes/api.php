@@ -66,6 +66,8 @@ Route::group([
 
     Route::get('/address/lookup/{term}', 'CompanyController@addressLookup');
 
+    Route::post('/quotes/test', 'QuoteController@test');
+
     Route::get('/quotes/{quote}', 'QuoteController@details');
 
     Route::post('/quotes/create', 'QuoteController@save');
