@@ -49,7 +49,7 @@ class QuoteController extends Controller
             $message->attach($path);
             $message->subject('Your quote is ready for ' . $data['customer']);
             $message->from('dude@quotedude.com', 'QuoteDude');
-            $message->to('gavalex@me.com');
+            $message->to('czachandrew@gmail.com');
         });
 
         return ['success' => $doc];
