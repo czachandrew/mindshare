@@ -4,11 +4,12 @@ namespace App;
 
 
 use Laravel\Spark\User as SparkUser;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 
 class User extends SparkUser
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
     /**
      * The attributes that are mass assignable.
      *

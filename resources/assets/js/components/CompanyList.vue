@@ -176,7 +176,7 @@ export default {
             console.log(error);
          })
       },
-      updateResults: function(){
+      updateResults: function(){t
          let self = this;
          axios.post('/api/companies/paginated',{filter: this.query, limit:this.limit, per_page:this.pagination.per_page}).then(response => {
             console.log(response);

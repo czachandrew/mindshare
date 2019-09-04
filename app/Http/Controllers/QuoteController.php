@@ -31,6 +31,12 @@ class QuoteController extends Controller
 
     }
 
+    public function createLiteQuote(Request $request){
+        //contains customer, customerEmail and line items 
+        $pdf = PDF::loadview('litequote', ['quote' => $request->all()]); 
+        return $pdf->download('Quote for ' . $quote->request->customer . '.pdf');
+    }
+
     public function create(Company $company){
         $quote =  new Quote;
     	return view('quote', ['company' => $company, 'quote' => $quote, 'start' => 'create']);
