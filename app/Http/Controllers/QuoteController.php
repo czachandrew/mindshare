@@ -8,11 +8,13 @@ use App\Company;
 use App\LineItem;
 use Log;
 use PDF;
+use Storage;
+use Mail;
 
 class QuoteController extends Controller
 {
     public function __construct(){
-
+        $this->middleware('auth:api');
     }
 
     public function show(Quote $quote){
@@ -38,10 +40,19 @@ class QuoteController extends Controller
     public function createLiteQuote(Request $request){
         //contains customer, customerEmail and line items 
         $data = $request->all();
-        $data->ref_number = "QUOTE#003";
-        $pdf = PDF::loadview('litequote', ['quote' => $request->all()]);
-        $link =  $pdf->save('Quote for ' . $quote->request->customer . '.pdf');
-        return ['success' => $link];
+        $data['ref_number'] = "QUOTE#003";
+        $pdf = PDF::loadview('litequote', ['quote' => $data]);
+        $link =  $pdf->download()->getOriginalContent();
+        $doc = Storage::put('public/pdf/Quote for ' . $data['customer'] . '.pdf', $link);
+        $path = $path = Storage::disk('public')->path('pdf/Quote for ' . $data['customer'] . '.pdf');
+        Mail::raw('Here is your quote', function ($message) use ($path , $data) {
+            $message->attach($path);
+            $message->subject('Your quote is ready for ' . $data['customer']);
+            $message->from('dude@quotedude.com', 'QuoteDude');
+            $message->to('gavalex@me.com');
+        });
+
+        return ['success' => $doc];
     }
 
     public function create(Company $company){

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>{{$quote->ref_number}}</title>
+<title>{{$quote['ref_number']}}</title>
 
 <style type="text/css">
     * {
@@ -44,13 +44,8 @@
     <tr>
         <td><strong>From:</strong> Todd Ferguson todd@hftoptics.com</td>
         <td><strong>To:</strong> 
-            {{$quote->customer}}<br> 
-            {{$quote->customer_email}}
-            <!-- {{$quote->billingAddress->address_1}}<br> 
-            @if($quote->billingAddress->address_2 !== '')
-            {{$quote->billingAddress->address_2}}<br>
-            @endif
-            {{$quote->billingAddress->city}}, {{$quote->billingAddress->state}} -->
+            {{$quote['customer']}}<br> 
+            {{$quote['customer_email']}}
 
         </td>
     </tr>
@@ -73,13 +68,13 @@
       </tr>
     </thead>
     <tbody>
-        @foreach($quote->lineitems as $lineitem)
+        @foreach($quote['lineitems'] as $lineitem)
       <tr>
         <th scope="row"></th>
-        <td>{{$lineitem->part}}</td>
-        <td align="right">{{$lineitem->quantity}}</td>
-        <td align="right">{{$lineitem->price}}</td>
-        <td align="right">{{$lineitem->price * $lineitem->quantity}}</td>
+        <td>{{$lineitem['part']}}</td>
+        <td align="right">{{$lineitem['quantity']}}</td>
+        <td align="right">{{$lineitem['price']}}</td>
+        <td align="right">{{$lineitem['price'] * $lineitem['quantity']}}</td>
       </tr>
       @endforeach
     </tbody>
@@ -98,7 +93,7 @@
         <tr>
             <td colspan="3"></td>
             <td align="right">Total $</td>
-            <td align="right" class="gray">$ {{$quote->total}}</td>
+            <td align="right" class="gray">$ {{$quote['total']}}</td>
         </tr>
     </tfoot>
   </table>
