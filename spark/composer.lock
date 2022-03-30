@@ -1,26 +1,27 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "27022e879ff469b6f19ba30a765fcb25",
+    "content-hash": "1491a098a2cd5f4f132a0d078db5b6a9",
     "packages": [
         {
             "name": "erusev/parsedown",
-            "version": "1.6.4",
+            "version": "v1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "fbe3fe878f4fe69048bb8a52783a09802004f548"
+                "reference": "d60bcdc46978357759ecb13cb4b078da783f8faf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/fbe3fe878f4fe69048bb8a52783a09802004f548",
-                "reference": "fbe3fe878f4fe69048bb8a52783a09802004f548",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/d60bcdc46978357759ecb13cb4b078da783f8faf",
+                "reference": "d60bcdc46978357759ecb13cb4b078da783f8faf",
                 "shasum": ""
             },
             "require": {
+                "ext-mbstring": "*",
                 "php": ">=5.3.0"
             },
             "require-dev": {
@@ -49,7 +50,11 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2017-11-14T20:44:03+00:00"
+            "support": {
+                "issues": "https://github.com/erusev/parsedown/issues",
+                "source": "https://github.com/erusev/parsedown/tree/1.7.x"
+            },
+            "time": "2019-03-17T17:19:46+00:00"
         },
         {
             "name": "firebase/php-jwt",
@@ -208,7 +213,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2017-10-06 12:25:00"
+            "time": "2017-10-06T12:25:00+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -273,7 +278,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-10-07 03:19:56"
+            "time": "2017-10-07T03:19:56+00:00"
         },
         {
             "name": "intervention/image",
@@ -441,7 +446,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -523,7 +528,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2017-11-09 03:25:25"
+            "time": "2017-11-09T03:25:25+00:00"
         }
     ],
     "packages-dev": [
@@ -2031,5 +2036,6 @@
     "platform": {
         "php": ">=5.5.9"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
 }
